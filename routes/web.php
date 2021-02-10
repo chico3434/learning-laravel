@@ -24,8 +24,6 @@ Route::prefix('/app')->group(function() {
     Route::get('/produtos', function(){ return 'Produtos'; })->name('app.produtos');
 });
 
-Route::get('/teste/{p1}/{p2}', 'TesteController@teste')->name('site.teste');
-
 Route::fallback(function() {
     return 'Essa rota não existe!! <a href="'.route('site.index').'">Clique aqui</a> para voltar para o início.';
 });
