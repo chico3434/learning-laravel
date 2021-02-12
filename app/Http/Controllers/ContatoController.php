@@ -9,7 +9,7 @@ class ContatoController extends Controller {
     public function contato(Request $request) {
         
         $motivo_contatos = MotivoContato::all();
-        
+
         return view('site.contato', ['motivo_contatos' => $motivo_contatos]);
     }
 
@@ -18,10 +18,11 @@ class ContatoController extends Controller {
         $request->validate([
             'nome' => 'required|min:3|max:40', // nomes com no mínomo 3 caracaters e no máximo 40           
             'telefone' => 'required',
-            'email' => 'required',
-            'motivo_contato' => 'required',
+            'email' => 'email',
+            'motivo_contatos_id' => 'required',
             'mensagem' => 'required|max:2000'
         ]);
-        // SiteContato::create($request->all());
+        SiteContato::create($request->all());
+        return redirect()->route('site.index');
     }
 }
