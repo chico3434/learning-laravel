@@ -1,11 +1,3 @@
-{{-- @if($errors->any())
-    <div style="width: 100%; background: red;">
-        @foreach ($errors->all() as $erro)
-            {{ $erro }}
-            <br>
-        @endforeach
-    </div>
-@endif --}}
 <form action="{{ route('site.contato') }}" method="post">
     @csrf
     <input name="nome" value="{{ old('nome') }}" type="text" placeholder="Nome" class="{{ $classe }}">
