@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use App\LogAcesso;
 
 class LogAcessoMiddleware
 {
@@ -13,10 +14,10 @@ class LogAcessoMiddleware
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle($request, Closure $next)
-    {   
-        // manipular a $request
-        // return $next($request);
-        return Response('Request parada no middleware');
+    public function handle($request, Closure $next) {   
+        $ip = $request->server->get('REMOTE_ADDR');
+        $rota = $request->getRequestUri();
+        LogAcesso::create(['log' => "IP $ip requisitou a rota $rota"]);
+        return $next($request);
     }
 }
